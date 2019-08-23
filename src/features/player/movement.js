@@ -28,6 +28,11 @@ export default function handleMovement(player) {
     }
   }
 
+  function getWalkIndex() {
+    const walkIndex = store.getState().player.walkIndex;
+    return walkIndex >= 8 ? 0 : walkIndex + 1;
+  }
+
   function observeBoundaries(oldPos, newPos) {
     return (
       newPos[0] >= 0 &&
@@ -45,12 +50,13 @@ export default function handleMovement(player) {
   }
 
   function dispatchMove(direction, newPos) {
-    const walkIndex = store.getState().player.walkIndex;
+    const walkIndex = getWalkIndex();
     store.dispatch({
       type: 'MOVE_PLAYER',
       payload: {
         position: newPos,
         direction,
+        walkIndex,
         spriteLocation: getSpriteLocation(direction, walkIndex)
       }
     });
