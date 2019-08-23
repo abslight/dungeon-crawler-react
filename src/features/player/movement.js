@@ -30,7 +30,7 @@ export default function handleMovement(player) {
 
   function getWalkIndex() {
     const walkIndex = store.getState().player.walkIndex;
-    return walkIndex >= 8 ? 0 : walkIndex + 1;
+    return walkIndex >= 7 ? 0 : walkIndex + 1;
   }
 
   function observeBoundaries(oldPos, newPos) {
@@ -46,7 +46,7 @@ export default function handleMovement(player) {
     const y = newPos[1] / SPRITE_SIZE;
     const x = newPos[0] / SPRITE_SIZE;
     const nextTile = tiles[y][x];
-    return nextTile < 5;
+    return nextTile < 4;
   }
 
   function dispatchMove(direction, newPos) {
